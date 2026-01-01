@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DASH Pro - EA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #6366f1;
+  --secondary: #22d3ee;
+  --bg-overlay: rgba(2, 6, 23, 0.88);
+  --card: #0f172a;
+  --border: #1e293b;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --success: #22c55e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  color: var(--text);
+  background:
+    linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+    url("https://wallpapercave.com/wp/wp2044109.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* ---------- HERO ---------- https://wallpaperaccess.com/full/3576574.jpg // https://wallpapercave.com/wp/wp2044109.jpg*/
+header {
+  padding: 120px 20px 100px;
+  text-align: center;
+}
+
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* jarak logo dan teks */
+justify-content: center;   /* center vertical */
+  align-items: center;       /* center horizontal */
+
+}
+
+.logo {
+  height: 50px; /* sesuaikan ukuran logo */
+  width: auto;
+border-radius: 4px;
+
+}
+
+header h1 {
+  font-size: 4rem;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+header p {
+  max-width: 790px;
+  margin: 18px auto;
+  color: var(--muted);
+  font-size: 1.0rem;
+}
+
+.btn {
+  display: inline-block;
+  margin: 12px;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------- SLIDING TEXT ---------- */
+.slider-wrapper {
+  overflow: hidden;
+  max-width: 1000px;
+  margin: 45px auto 0;
+}
+
+.slider {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--success);
+}
+
+/* ---------- SECTIONS ---------- */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title h2 {
+  font-size: 2.2rem;
+}
+
+.section-title p {
+  color: var(--muted);
+}
+
+/* ---------- GRID ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(2,6,23,0.9), rgba(15,23,42,0.9));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 30px;
+}
+
+/* ---------- BACKTEST ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+}
+
+.stat h3 {
+  font-size: 2rem;
+  color: var(--success);
+}
+
+.stat p {
+  margin-top: 6px;
+  color: var(--muted);
+}
+
+.equity {
+  height: 500px;
+  margin-top: 10px;
+  border-radius: 16px;
+  border: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+.equity img {
+  max-height: 490px;
+  max-width: auto;
+  filter: brightness(0.9);
+  border-radius: 6px;
+}
+
+.equity2 {
+  height: 80px;
+  margin-top: 10px;
+  border-radius: 16px;
+  border: 1px dashed var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+.equity2 img {
+  max-height: 40px;
+  max-width: auto;
+  filter: brightness(0.9);
+border-radius: 12px;
+
+}
+
+
+
+/* ---------- BACKTEST ---------- */
+
+.panel-buttons {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.panel-buttons button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.panel-buttons button:hover {
+  background: #0056b3;
+}
+
+.panels-panel {
+  max-width: 1200px;
+  margin: 0 auto;
+  /*background: var(--card);*/
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+}
+
+.panel-panel {
+  display: none; /* hidden by default background: #fff; */
+  
+  padding: 40px;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.panel-panel img {
+  max-width: 900px;
+}
+
+
+
+
+/* ---------- BROKERS ---------- */
+
+.brokers-horizontal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.broker {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid #1e293b;
+  padding: 20px 30px;
+  border-radius: 14px;
+  transition: 0.3s ease;
+}
+
+.broker img {
+  max-height: 90px;
+  max-width: auto;
+  filter: brightness(1.1);
+}
+
+.broker:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+
+/*.brokers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 25px;
+}
+
+.broker {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 25px;
+  text-align: center;
+  opacity: 0.85;
+  transition: 0.3s;
+}
+
+.broker:hover {
+  opacity: 1;
+  transform: translateY(-4px);
+}
+*/
+
+/* ---------- CTA ---------- */
+.cta {
+  background: linear-gradient(135deg, rgba(2,6,23,0.95), rgba(15,23,42,0.95));
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  padding: 70px 20px;
+  text-align: center;
+}
+
+/* ---------- FLOAT BUTTONS ---------- */
+.floating {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 999;
+}
+
+.floating a {
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+}
+
+.whatsapp { background: #22c55e; }
+.telegram { background: #0ea5e9; }
+
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<header>
+ <div class="header-title">
+    <img src="Logo.png" alt="DASH Pro - EA" class="logo">
+    <h1>DASH Pro</h1>
+  </div>
+<h2>Expert Advisor for Social Trading</h2>
+  <p>
+    Automated Forex and Gold Trading using professionally designed strategies, proven through 5–15 years+ of backtesting and real trading plan experience.
+    
+  </p>
+  <a href="#what" class="btn">What DASH Pro Trade?</a>
+  <a href="#features" class="btn">Why DASH Pro?</a>
+  
+<a href="#backtest" class="btn">View Backtest</a>
+<a href="#brokers" class="btn">Broker Partners</a>
+<a href="#start" class="btn">Join Now?</a>
+
+  <!--<a href="#start" class="btn">Start Copy Trading</a>-->
+  
+
+  <!-- SLIDING TEXT -->
+  <div class="slider-wrapper">
+    <div class="slider" id="slider">
+      <!-- ADD MORE SLIDES EASILY BELOW -->
+<div class="slide">✔ No EA purchase required — simply follow the copy trade and earn profits</div>
+<div class="slide">✔ Proven backtested strategies with verified trading logic</div>
+<div class="slide">✔ Low drawdown with an advanced risk management system</div>
+<div class="slide">✔ Integrated with broker copy-trading platforms via top global brokers</div>
+<div class="slide">✔ Fully automated EA-based copy trading</div>
+<div class="slide">✔ Supports Forex and Gold (XAUUSD)</div>
+     
+    </div>
+  </div>
+</header>
+
+
+<!-- MARKETS -->
+<section id="what">
+  <div class="section-title">
+    <h2>What DASH Pro Trade?</h2>
+    <p>Diversified automated trading strategies</p>
+  </div>
+
+  <div class="grid">
+   
+   <div class="card market">
+  <span style="font-size:42px;">🥇</span>
+  <h3>Gold (XAUUSD)</h3>
+  <p>Automated gold trading EA</p>
+</div>
+
+ <div class="card market">
+      <span style="font-size:42px;">💱</span>
+      <h3>Forex</h3>
+      <p>Best Favourite major & minor currency pairs only</p>
+    </div>
+   
+  </div>
+</section>
+
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-title">
+    <h2>Why DASH Pro?</h2>
+    <h3>Built for Consistency & Capital Protection</h3><p>Powered by a professional-grade automated trading plan system</p>
+  </div>
+
+  <div class="grid">
+
+ <div class="card">
+      <h3>FREE, Easy-to-Copy & Fully Automated EA</h3>
+      <p>No purchase required and no manual execution needed. Trades run automatically 24/5.</p>
+    </div>
+
+ <div class="card">
+      <h3>Proven Backtested Strategies</h3>
+      <p>Based on a professional's trading plan with over 10 years experience.</p>
+    </div>
+
+ <div class="card">
+      <h3>MA-Based Signal with Smart Averaging</h3>
+      <p>A robust strategy designed for all market conditions, featuring strict layer limits.</p>
+    </div>
+   
+    <div class="card">
+      <h3>Risk Management</h3>
+      <p>Lot sizing, drawdown & equity protection.</p>
+    </div>
+    <div class="card">
+      <h3>Instant Copying</h3>
+      <p>Trades copied in real-time to your account.</p>
+    </div>
+    <div class="card">
+      <h3>Broker Copy Trade Platform Ready</h3>
+      <p>Works with most brokers worldwide.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- BACKTEST -->
+
+<section class="panels-section" id="backtest">
+  <div class="section-title">
+    <h2>DASH Pro Gold🥇 & FX💱</h2>
+<h3>5-15 Years+ Backtest Trading Results</h3>
+    <p>Historical performance based on strategy testing</p>
+
+  </div>
+
+  <!-- Buttons -->
+  <div class="panel-buttons">
+    <button onclick="showPanel('xu1')">XAUUSD</button>
+
+    <!--<button onclick="showPanel('xu')">XAUUSD</button>-->
+    <button onclick="showPanel('eu')">EURUSD</button>
+    <button onclick="showPanel('au')">AUDUSD</button>
+    <button onclick="showPanel('gu')">GBPUSD</button>
+  </div>
+
+
+
+  <!-- Panels -->
+  <div class="panels-panel">
+
+<div class="panel-panel" id="xu1">
+    
+
+	 <div class="stats">
+
+    <div class="stat">
+      <h3>+1.568%</h3>
+      <p>Total Net Profit</p>
+    </div>
+    <div class="stat">
+      <h3>33%</h3>
+      <p>Max Drawdown</p>
+    </div>
+    <div class="stat">
+      <h3>1.74</h3>
+      <p>Profit Factor</p>
+    </div>
+    <div class="stat">
+      <h3>75%</h3>
+      <p>Win Rate</p>
+    </div>
+  </div>
+
+  <div class="equity">
+    <!--Backtest Equity Curve / Report Image Here-->
+<img src="gold1.jpg" alt="DASH Pro GOLD"/>
+  </div>
+
+
+Historical Backtest Results Covering 15+ Years : <a href="StrategyTester-DASHProGold-M30.htm" style="color: lightblue;"><b>DASH Pro GOLD</b></a>
+
+
+    </div>
+
+<!-- 
+<div class="panel-panel" id="xu">
+     
+	 <div class="stats">
+    <div class="stat">
+      <h3>+479%</h3>
+      <p>Total Net Profit</p>
+    </div>
+    <div class="stat">
+      <h3>68%</h3>
+      <p>Max Drawdown</p>
+    </div>
+    <div class="stat">
+      <h3>1.69</h3>
+      <p>Profit Factor</p>
+    </div>
+    <div class="stat">
+      <h3>67%</h3>
+      <p>Win Rate</p>
+    </div>
+  </div>
+
+  <div class="equity">
+   
+<img src="gold.jpg" alt="DASH Pro FX"/>
+
+  </div>
+    </div>
+-->
+
+
+    <div class="panel-panel" id="eu">
+     
+	<div class="stats">
+
+    <div class="stat">
+      <h3>+414%</h3>
+      <p>Total Net Profit</p>
+    </div>
+    <div class="stat">
+      <h3>21%</h3>
+      <p>Max Drawdown</p>
+    </div>
+    <div class="stat">
+      <h3>1.67</h3>
+      <p>Profit Factor</p>
+    </div>
+    <div class="stat">
+      <h3>62%</h3>
+      <p>Win Rate</p>
+    </div>
+  </div>
+
+  <div class="equity">
+    <!--Backtest Equity Curve / Report Image Here-->
+<img src="fx.jpg" alt="DASH Pro FX"/>
+ </div>
+
+
+    </div>
+
+    <div class="panel-panel" id="au">
+     
+	<div class="stats">
+
+    <div class="stat">
+      <h3>+271%</h3>
+      <p>Total Net Profit</p>
+    </div>
+    <div class="stat">
+      <h3>49%</h3>
+      <p>Max Drawdown</p>
+    </div>
+    <div class="stat">
+      <h3>1.54</h3>
+      <p>Profit Factor</p>
+    </div>
+    <div class="stat">
+      <h3>60%</h3>
+      <p>Win Rate</p>
+    </div>
+  </div>
+
+  <div class="equity">
+    <!--Backtest Equity Curve / Report Image Here-->
+<img src="fxau.jpg" alt="DASH Pro FX"/>
+ </div>
+
+    </div>
+
+    <div class="panel-panel" id="gu">
+     <div class="stats">
+
+    <div class="stat">
+      <h3>+254%</h3>
+      <p>Total Net Profit</p>
+    </div>
+    <div class="stat">
+      <h3>44%</h3>
+      <p>Max Drawdown</p>
+    </div>
+    <div class="stat">
+      <h3>1.61</h3>
+      <p>Profit Factor</p>
+    </div>
+    <div class="stat">
+      <h3>63%</h3>
+      <p>Win Rate</p>
+    </div>
+  </div>
+
+  <div class="equity">
+    <!--Backtest Equity Curve / Report Image Here-->
+    <img src="fxgu.jpg" alt="DASH Pro FX"/>
+  </div>
+
+    </div>
+  </div>
+
+
+
+<div class="equity2">
+<img src="mql5.png" alt="DASH Pro GOLD MQL5"/><br>
+    &nbsp; MQL 5 Link (Historical Live Performance) -> &nbsp;
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.mql5.com/en/signals/2351003" style="color: yellow;"><b>DASH Pro GOLD Exness</b></a>
+&nbsp;&nbsp; | &nbsp;&nbsp;<a href="https://www.mql5.com/en/signals/2351004" style="color: Crimson;"><b>DASH Pro GOLD XM</b></a><br> 
+
+  </div>
+
+
+</section>
+
+
+
+
+<!-- BROKERS -->
+<section id="brokers">
+  <div class="section-title">
+    <h2>Broker Partners</h2>
+    <p>Supported by trusted global brokers</p>
+  </div>
+
+  <div class="brokers-horizontal">
+    <!--<div class="broker">
+      <img src="ic.jpg" alt="IC Markets">
+    </div>-->
+
+    <div class="broker">
+<a href="https://one.exnessonelink.com/a/mxwsw19fyi">
+      <img src="ex.jpg" alt="Exness"></a>
+    </div>
+
+    <div class="broker">
+     <a href="https://www.xmidbroker.org/referral?token=rkywchtQcAxOkTN1FLTWHQ"> <img src="xm.jpg" alt="XM"></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="start" class="cta">
+  <h2>Start Copy Trading Today</h2>
+<br>
+  <p>Join traders who use our EA, featuring transparent backtested performance and full compatibility with your preferred broker. 
+
+<br><br>
+<p>Click here to register with the broker :</p><br>
+
+<a href="https://one.exnessonelink.com/a/mxwsw19fyi" style="color: yellow;">Exness</a> <br><br> <a href="https://www.xmidbroker.org/referral?token=rkywchtQcAxOkTN1FLTWHQ" style="color: Crimson;">XM</a> 
+<br>
+
+<br><br>
+<p>Join our EA on the Social Trading platform (Copy Trade Broker) <br>– click the link to get started (Some links may allow access using a VPN) :</p> <br><br>
+
+<a href="https://social-trading.exness.com/strategy/110581408" style="color: yellow;">DASH Pro GOLD Exness</a> <br><br> <a href="https://social.tp-redirect.com/s/JgjZQxgj" style="color: Crimson;">DASH Pro GOLD XM </a> 
+
+<br><br>
+<br>For Assistance and further information :</p>
+  <br>
+  <a href="https://wa.me/+6281322497686" class="btn">WhatsApp Support</a>
+  <!--<a href="https://t.me/yourtelegram" class="btn">Join Telegram</a>-->
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 DASH Pro EA - Expert Advisor for Social Trading
+  <br>Disclaimer: Trading involves risk. Past performance does not guarantee future results.
+</footer>
+
+
+<!-- FLOATING CTA -->
+<div class="floating">
+  <a href="https://wa.me/+6281322497686" class="whatsapp">WhatsApp</a>
+  <!--<a href="https://t.me/yourtelegram" class="telegram">Telegram</a>-->
+
+</div>
+
+
+
+<!-- SLIDER SCRIPT -->
+<script>
+const slider = document.getElementById("slider");
+const slides = document.querySelectorAll(".slide");
+let index = 0;
+
+setInterval(() => {
+  index = (index + 1) % slides.length;
+  slider.style.transform = `translateX(${index * -100}%)`;
+}, 3000);
+
+
+function showPanel(panelId) {
+  const panels = document.querySelectorAll('.panel-panel');
+  panels.forEach(panel => panel.style.display = 'none');
+
+  document.getElementById(panelId).style.display = 'block';
+}
+
+// Show first panel by default
+showPanel('xu1');
+
+
+
+</script>
+
+</body>
+</html>
